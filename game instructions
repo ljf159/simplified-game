@@ -1,0 +1,34 @@
+Subway Flood Prediction Game
+Introduction: Welcome to the Subway Flood Prediction Game! In this game, you will take on the role of a subway network manager. Your goal is to prevent trains from being trapped by predicting flood levels and making informed decisions.
+Game Overview:
+You will manage a simplified subway network consisting of two stations (Station A and Station B) connected by a single track section (Track Node). Water levels at the stations will change over time, and you need to predict the water level at the track node, where there are no sensors. Based on your prediction, you will decide whether to allow a train to pass through the track.
+Scenario Settings:
+•	The subway network has two stations and one connecting track node.
+•	Floodwater can potentially enter at any of these three locations.
+•	If the water level exceeds 50% at any location (Station A, Station B, or the Track Node), a train passing through will become trapped.
+•	Water level sensors are only located at Station A and Station B. You will see the current water levels at these stations in each round.
+•	There is no sensor at the Track Node. You must predict the water level there based on the readings from Station A and Station B.
+•	Water propagates between connected nodes based on elevation differences. This means the water levels at the stations can give you clues about the potential water level at the track node.
+Gameplay:
+The game is divided into 10 episodes. Each episode will have different conditions (flood level rise rate and elevation). Within each episode, you will play 10 rounds.
+Each Round:
+1.	Observe Station Water Levels: At the beginning of each round, you will see the updated water levels (as a percentage) at both Station A and Station B.
+2.	Predict Track Node Water Level: Based on the station water levels and your understanding of how water might propagate, you need to predict the water level (as a percentage) at the Track Node. You will enter your prediction into the provided field.
+3.	Decide on Train Passage: After making your prediction, you must decide whether to allow the train to pass through the track node. You will have two options:
+o	Allow Passage: Click this button if you believe the water level at the Track Node is 50% or below and the train can pass safely.
+o	Do Not Allow Passage: Click this button if you believe the water level at the Track Node might exceed 50%, and it's safer to delay the train.
+4.	Outcome and Scoring: After you make your decision, the actual water level at the Track Node will be revealed (though you won't see this until after your decision). Your score for the round will be calculated based on your decision and the actual water level at the Track Node, according to the following rules:
+o	Punishment Scoring (for some participants):
+	If you do not allow the train to pass: -10 points (delay penalty).
+	If you allow passage and the actual water level at the Track Node is >50%: -50 points (train trapped).
+	If you allow passage and the actual water level at the Track Node is ≤50%: 0 points (successful passage).
+o	Reward Scoring (for other participants):
+	If you do not allow the train to pass: +40 points (delay reward).
+	If you allow passage and the actual water level at the Track Node is >50%: 0 points (train trapped - no penalty).
+	If you allow passage and the actual water level at the Track Node is ≤50%: +50 points (successful passage reward).
+Your total score will be displayed at the top of the screen. The game will proceed through 10 rounds for each of the 10 episodes.
+Strategy Tips:
+•	Pay close attention to the trends in water levels at both stations. Are they rising, falling, or staying the same?
+•	Consider the elevation differences between the stations and the track node (as shown in the simplified subway map). This might give you clues about how water could flow.
+•	Try to balance the risk of a large penalty (or no reward) for a trapped train against the smaller penalty (or smaller reward) for delaying the train.
+Thank you for participating in this study! Please try your best to predict the water levels and make the best decisions you can in each round.

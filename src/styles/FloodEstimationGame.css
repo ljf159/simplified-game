@@ -1,0 +1,240 @@
+.game-container {
+  background-color: #0a0a1a;
+  min-height: 100vh;
+  padding: 0.75rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.game-title {
+  color: #50ffa0;
+  margin-bottom: 0.25rem;
+  font-size: 2.25rem !important;
+  font-weight: 600;
+  text-align: center;
+}
+
+.game-header {
+  background-color: #1a1a2e;
+  border-radius: 8px;
+  padding: 0.35rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.game-header-item {
+  text-align: center;
+  padding: 0.2rem;
+  background-color: #2d3250;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.game-header-item h6 {
+  margin: 0;
+  font-size: 0.7rem;
+}
+
+.game-header-item h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.map-container {
+  background-color: #1a1a2e;
+  border-radius: 8px;
+  padding: 0.75rem;
+  width: 98%;
+}
+
+.stations-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.75rem;
+}
+
+.station-card {
+  background-color: #2d3250;
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.prediction-container {
+  background-color: #1a1a2e;
+  border-radius: 8px;
+  padding: 0.75rem;
+  width: 98%;
+}
+
+.prediction-slider {
+  margin: 0.75rem 0;
+}
+
+.submit-button {
+  background-color: #50ffa0;
+  color: #0a0a1a;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.submit-button:hover {
+  background-color: #45e890;
+}
+
+.water-level-indicator {
+  height: 12px;
+  background-color: #1a1a2e;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 0.35rem;
+}
+
+.water-level-fill {
+  height: 100%;
+  background-color: #50ffa0;
+  transition: width 0.3s ease;
+}
+
+.elevation-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.legend-gradient {
+  width: 150px;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #2d3250, #50ffa0);
+}
+
+.canvas-container {
+  width: 100%;
+  height: 170px;
+  margin: 0.35rem 0;
+  position: relative;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.decision-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.allow-button {
+  background-color: #50ffa0;
+  color: #0a0a1a;
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+  padding: 0.5rem;
+}
+
+.deny-button {
+  background-color: #ff5050;
+  color: #ffffff;
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+  padding: 0.5rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .game-container {
+    padding: 0.5rem;
+  }
+
+  .game-title {
+    font-size: 1.1rem !important;
+  }
+
+  .game-header-item h6 {
+    font-size: 0.65rem;
+  }
+
+  .game-header-item h4 {
+    font-size: 0.9rem;
+  }
+
+  .canvas-container {
+    height: 130px;
+  }
+
+  .stations-container {
+    grid-template-columns: 1fr;
+  }
+
+  .decision-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .allow-button,
+  .deny-button {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-title {
+    font-size: 1rem !important;
+  }
+
+  .game-header {
+    flex-direction: column;
+  }
+
+  .game-header-item {
+    width: 100%;
+  }
+
+  .canvas-container {
+    height: 100px;
+  }
+}
+
+/* 平板设备 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .game-container {
+    padding: 0.6rem;
+  }
+
+  .canvas-container {
+    height: 160px;
+  }
+}
+
+/* 大屏幕设备 */
+@media (min-width: 1025px) {
+  .game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+} 
