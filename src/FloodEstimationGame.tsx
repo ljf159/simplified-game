@@ -477,6 +477,7 @@ const FloodEstimationGame: React.FC<FloodEstimationGameProps> = ({ preGameSurvey
     y: number, 
     floodLevel: number,
     name: string,
+    // @ts-ignore - isFailurePoint is used in type definitions
     isFailurePoint: boolean,
     elevation: number
   ) => {

@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { collection, addDoc, doc, getDoc, getDocs, query, where, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDocs, query, where, updateDoc } from 'firebase/firestore';
 import { getOrCreateSessionId } from '../utils/session';
 
 export interface GameSession {

@@ -54,7 +54,6 @@ const PostGameSurvey: React.FC<PostGameSurveyProps> = ({ open, onClose }) => {
   const [showStrategyDescription, setShowStrategyDescription] = useState<boolean>(false);
   const [showThankYouPage, setShowThankYouPage] = useState<boolean>(false);
   const [showGiftCardForm, setShowGiftCardForm] = useState<boolean>(false);
-  const [showFinalThankYou, setShowFinalThankYou] = useState<boolean>(false);
 
   const handleChange = (field: keyof PostGameSurveyAnswers) => (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -62,7 +61,6 @@ const PostGameSurvey: React.FC<PostGameSurveyProps> = ({ open, onClose }) => {
     const value = event.target.value;
     setAnswers((prev) => ({ ...prev, [field]: value }));
     
-    // 如果策略变化字段从"no"变为"yes"，显示描述字段
     if (field === 'strategyChanged' && value === 'yes') {
       setShowStrategyDescription(true);
     } else if (field === 'strategyChanged' && value === 'no') {
@@ -70,45 +68,27 @@ const PostGameSurvey: React.FC<PostGameSurveyProps> = ({ open, onClose }) => {
     }
   };
 
-  const handleSliderChange = (field: keyof PostGameSurveyAnswers) => (
-    _: Event,
-    value: number | number[]
-  ) => {
-    setAnswers((prev) => ({ ...prev, [field]: value as number }));
-  };
-
   const handleSubmit = () => {
-    // 先显示感谢页面
     setShowThankYouPage(true);
   };
 
   const handleGiftCardSubmit = () => {
-    // // 显示最终感谢页面
-    // setShowFinalThankYou(true);
-    
-    // 调用 onClose 并传递完整的答案
     onClose({
       ...answers,
       wantsGiftCard: true
     });
     
-    // 跳转到感谢页面
     navigate('/thank-you', { state: { wantsGiftCard: true } });
   };
 
   const handleNoGiftCard = () => {
-    // 设置不想要礼品卡
     setAnswers({ ...answers, wantsGiftCard: false });
-    // // 显示最终感谢页面
-    // setShowFinalThankYou(true);
     
-    // 调用 onClose 并传递完整的答案
     onClose({
       ...answers,
       wantsGiftCard: false
     });
     
-    // 跳转到感谢页面
     navigate('/thank-you', { state: { wantsGiftCard: false } });
   };
 

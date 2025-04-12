@@ -13,7 +13,6 @@ import {
   FormLabel,
   TextField,
   Box,
-  Slider,
   Divider
 } from '@mui/material';
 
@@ -49,19 +48,11 @@ const PreGameSurvey: React.FC<PreGameSurveyProps> = ({ open, onClose }) => {
       [field]: event.target.value
     });
 
-    // 如果选择了"是"，显示描述字段
     if (field === 'hasSimilarExperience' && event.target.value === 'yes') {
       setShowExperienceField(true);
     } else if (field === 'hasSimilarExperience' && event.target.value === 'no') {
       setShowExperienceField(false);
     }
-  };
-
-  const handleSliderChange = (_: Event, newValue: number | number[]) => {
-    setAnswers({
-      ...answers,
-      riskPreferenceGeneral: newValue as number
-    });
   };
 
   const handleSubmit = () => {
