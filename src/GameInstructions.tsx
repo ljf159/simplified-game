@@ -40,6 +40,23 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
       </DialogTitle>
 
       <DialogContent>
+        <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center' }}>
+          <Box
+            component="iframe"
+            sx={{
+              width: '100%',
+              height: '315px',
+              border: 'none',
+              borderRadius: '4px',
+              mb: 3
+            }}
+            src="https://www.youtube.com/embed/S9MLEIlivt4"
+            title="Game Instructions Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </Box>
+
         <Box sx={{ mb: 4 }}>
           <Typography variant="h6" color="primary" gutterBottom>
             Game Overview
@@ -51,7 +68,7 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
             <strong>Key Trade-off:</strong> Successfully transporting passengers (allowing train passage) versus ensuring safety (denying passage when flood risk is high). A trapped train endangers lives (major loss), while denying passage only causes delays (minor loss).
           </Typography>
           <Typography variant="body1" paragraph>
-            <strong>Time Commitment:</strong> This study takes approximately 30-50 minutes, including:
+            <strong>Time Commitment:</strong> This study takes approximately 30-40 minutes, including:
             <br />
             • Pre-game survey
             <br />
