@@ -7,7 +7,9 @@ import {
   Button,
   Typography,
   Box,
-  Divider
+  Divider,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 
 interface GameInstructionsProps {
@@ -16,6 +18,9 @@ interface GameInstructionsProps {
 }
 
 const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
   return (
     <Dialog 
       open={open} 
@@ -24,13 +29,16 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
       PaperProps={{
         sx: {
           bgcolor: '#f5f5f5',
-          p: 2
+          p: isMobile ? 1 : 2,
+          m: isMobile ? 0 : 2,
+          width: '100%',
+          maxHeight: isMobile ? '100%' : '90vh',
         }
       }}
     >
-      <DialogTitle>
+      <DialogTitle sx={{ p: isMobile ? 1 : 2 }}>
         <Typography 
-          variant="h4" 
+          variant={isMobile ? "h5" : "h4"} 
           align="center" 
           gutterBottom 
           component="div"
@@ -39,16 +47,16 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
         </Typography>
       </DialogTitle>
 
-      <DialogContent>
-        <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center' }}>
+      <DialogContent sx={{ p: isMobile ? 1 : 2 }}>
+        <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
           <Box
             component="iframe"
             sx={{
               width: '100%',
-              height: '315px',
+              height: isMobile ? '200px' : '315px',
               border: 'none',
               borderRadius: '4px',
-              mb: 3
+              mb: 2
             }}
             src="https://www.youtube.com/embed/S9MLEIlivt4"
             title="Game Instructions Video"
@@ -57,8 +65,8 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
           />
         </Box>
 
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h6" color="primary" gutterBottom>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant={isMobile ? "subtitle1" : "h6"} color="primary" gutterBottom>
             Game Overview
           </Typography>
           <Typography variant="body1" paragraph>
@@ -78,23 +86,23 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
           </Typography>
         </Box>
 
-        <Divider sx={{ my: 3 }} />
+        <Divider sx={{ my: 2 }} />
 
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h6" color="primary" gutterBottom>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant={isMobile ? "subtitle1" : "h6"} color="primary" gutterBottom>
             Core Mechanics
           </Typography>
           <Typography variant="body1" component="div">
             • Each game consists of 10 episodes, with up to 10 rounds each
             <br />
             • <strong>Each episode features new scenarios</strong> with different:
-            <Box sx={{ pl: 3, mt: 1 }}>
+            <Box sx={{ pl: 2, mt: 1 }}>
               - Elevation levels for stations and track node
               <br />
               - Water rising patterns
             </Box>
             • In each round, you will:
-            <Box sx={{ pl: 3, mt: 1 }}>
+            <Box sx={{ pl: 2, mt: 1 }}>
               1. <strong>Observe</strong> water levels at stations A and B
               <br />
               2. <strong>Predict</strong> the water level at the track node
@@ -104,14 +112,14 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
           </Typography>
         </Box>
 
-        <Divider sx={{ my: 3 }} />
+        <Divider sx={{ my: 2 }} />
 
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h6" color="primary" gutterBottom>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant={isMobile ? "subtitle1" : "h6"} color="primary" gutterBottom>
             Important Rules
           </Typography>
           <Typography variant="body1" component="div">
-            • <strong>Only the track node can trap trains</strong> (water level {'>'} 50%)
+            • <strong>Only the track node can trap trains</strong> (water level {'>'} <strong>50%</strong>)
             <br />
             • Stations A and B will never trap trains
             <br />
@@ -123,10 +131,10 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
           </Typography>
         </Box>
 
-        <Divider sx={{ my: 3 }} />
+        <Divider sx={{ my: 2 }} />
 
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h6" color="primary" gutterBottom>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant={isMobile ? "subtitle1" : "h6"} color="primary" gutterBottom>
             Scoring System
           </Typography>
           <Typography variant="body1" paragraph color="primary">
@@ -134,7 +142,7 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
           </Typography>
           <Typography variant="body1" component="div">
             <strong>Scoring System 1:</strong>
-            <Box sx={{ pl: 3 }}>
+            <Box sx={{ pl: 2 }}>
               • Successful passage: +50
               <br />
               • Denying passage: +40
@@ -142,9 +150,9 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
               • Train trapped: 0
             </Box>
           </Typography>
-          <Typography variant="body1" component="div" sx={{ mt: 2 }}>
+          <Typography variant="body1" component="div" sx={{ mt: 1 }}>
             <strong>Scoring System 2:</strong>
-            <Box sx={{ pl: 3 }}>
+            <Box sx={{ pl: 2 }}>
               • Successful passage: 0
               <br />
               • Denying passage: -10
@@ -155,16 +163,14 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
         </Box>
 
         <Box>
-          <Typography variant="h6" color="error">
+          <Typography variant={isMobile ? "subtitle1" : "h6"} color="error">
             Important Notes
           </Typography>
           <Typography variant="body1" paragraph>
             • If a train gets trapped, the current episode will end immediately
-            <br />
-            • Brief surveys will be conducted before the game, after each episode, and after completing all episodes
           </Typography>
           <Typography variant="body1" paragraph sx={{ bgcolor: 'info.main', color: 'white', p: 1, borderRadius: 1 }}>
-            <strong>Rewards:</strong> Based on your performance:
+            <strong>Rewards:</strong> Based on your score performance:
             <br />
             • Top 50% of participants: $15 Amazon gift card
             <br />
@@ -175,13 +181,14 @@ const GameInstructions: React.FC<GameInstructionsProps> = ({ open, onClose }) =>
         </Box>
       </DialogContent>
 
-      <DialogActions>
+      <DialogActions sx={{ p: isMobile ? 1 : 2 }}>
         <Button 
           onClick={onClose}
           variant="contained"
           color="primary"
-          size="large"
-          sx={{ px: 4 }}
+          size={isMobile ? "medium" : "large"}
+          sx={{ px: isMobile ? 2 : 4 }}
+          fullWidth={isMobile}
         >
           Start Game
         </Button>
