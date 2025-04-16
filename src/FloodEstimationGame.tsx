@@ -424,15 +424,15 @@ const FloodEstimationGame: React.FC<FloodEstimationGameProps> = ({ preGameSurvey
     ctx.font = '14px Arial';
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
-    ctx.fillText('Track', trackNodeX, trackY + 30);
+    ctx.fillText('Track Node', trackNodeX, trackY + 30);
     
     // 绘制轨道节点高程
     ctx.font = '12px Arial';
-    ctx.fillText(`Elev: ${gameState.trackNode.elevation}m`, trackNodeX, trackY + 50);
+    ctx.fillText(`Elevation: ${gameState.trackNode.elevation}m`, trackNodeX, trackY + 50);
     
     // 绘制轨道节点水位
     if (showResult) {
-      ctx.fillText(`Water: ${gameState.trackNode.floodLevel.toFixed(1)}%`, trackNodeX, trackY + 70);
+      ctx.fillText(`Water Level: ${gameState.trackNode.floodLevel.toFixed(1)}%`, trackNodeX, trackY + 70);
     } else {
       ctx.fillText('?', trackNodeX, trackY + 70);
     }
@@ -494,14 +494,14 @@ const FloodEstimationGame: React.FC<FloodEstimationGameProps> = ({ preGameSurvey
     ctx.font = '14px Arial';
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
-    ctx.fillText('St A', x, y + 30);
+    ctx.fillText(name, x, y + 30);
 
     // 绘制高程标签
     ctx.font = '12px Arial';
-    ctx.fillText(`Elev: ${elevation}m`, x, y + 50);
+    ctx.fillText(`Elevation: ${elevation}m`, x, y + 50);
 
     // 绘制水位标签
-    ctx.fillText(`Water: ${floodLevel.toFixed(1)}%`, x, y + 70);
+    ctx.fillText(`Water Level: ${floodLevel.toFixed(1)}%`, x, y + 70);
   };
   
   // 绘制列车
