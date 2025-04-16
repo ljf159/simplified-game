@@ -137,7 +137,7 @@ const PreGameSurvey: React.FC<PreGameSurveyProps> = ({ open, onClose }) => {
             <FormControlLabel 
               value="keep" 
               control={<Radio />} 
-              label="Keep $40 for sure" 
+              label="Keep $50 for sure" 
             />
             <FormControlLabel 
               value="gamble" 
