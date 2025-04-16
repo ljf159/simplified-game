@@ -333,7 +333,7 @@ const PostGameSurvey: React.FC<PostGameSurveyProps> = ({ open, onClose, gameType
                 sx={{ mt: 2, mb: 3 }}
               />
               <Typography variant="body2" color="text.secondary" paragraph>
-                We will send your gift card within 5 business days after the data collection is complete. Your email will only be used for sending the gift card and will not be shared with any third parties.
+                We will send your gift card within 5 business days after the data collection is completed. Your email will only be used for sending the gift card and will not be shared with any third parties.
               </Typography>
             </Box>
           </DialogContent>
