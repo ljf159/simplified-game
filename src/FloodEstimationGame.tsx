@@ -444,9 +444,9 @@ const FloodEstimationGame: React.FC<FloodEstimationGameProps> = ({ preGameSurvey
   // 绘制高程图例
   const drawElevationLegend = (ctx: CanvasRenderingContext2D) => {
     const legendWidth = 120;
-    const legendHeight = 15;
-    const startX = 30;
-    const startY = 30;
+    const legendHeight = 13;
+    const startX = 15;
+    const startY = 15;
     
     // 绘制渐变背景
     const gradient = ctx.createLinearGradient(startX, startY, startX + legendWidth, startY);
