@@ -13,15 +13,14 @@ import {
   FormLabel,
   TextField,
   Box,
-  Divider
+  Divider,
 } from '@mui/material';
 
 export interface PreGameSurveyAnswers {
-  educationLevel: string;
-  riskPreferenceGeneral: number;
-  riskPreferenceFinancial: string;
-  hasSimilarExperience: string;
-  experienceDescription: string;
+  riskPreference: string;
+  decisionMakingStyle: string;
+  lossAversion: string;
+  safetyVsEfficiency: string;
 }
 
 interface PreGameSurveyProps {
@@ -31,14 +30,11 @@ interface PreGameSurveyProps {
 
 const PreGameSurvey: React.FC<PreGameSurveyProps> = ({ open, onClose }) => {
   const [answers, setAnswers] = useState<PreGameSurveyAnswers>({
-    educationLevel: '',
-    riskPreferenceGeneral: 0,
-    riskPreferenceFinancial: '',
-    hasSimilarExperience: '',
-    experienceDescription: ''
+    riskPreference: '',
+    decisionMakingStyle: '',
+    lossAversion: '',
+    safetyVsEfficiency: ''
   });
-
-  const [showExperienceField, setShowExperienceField] = useState(false);
 
   const handleChange = (field: keyof PreGameSurveyAnswers) => (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -47,12 +43,6 @@ const PreGameSurvey: React.FC<PreGameSurveyProps> = ({ open, onClose }) => {
       ...answers,
       [field]: event.target.value
     });
-
-    if (field === 'hasSimilarExperience' && event.target.value === 'yes') {
-      setShowExperienceField(true);
-    } else if (field === 'hasSimilarExperience' && event.target.value === 'no') {
-      setShowExperienceField(false);
-    }
   };
 
   const handleSubmit = () => {
@@ -61,9 +51,10 @@ const PreGameSurvey: React.FC<PreGameSurveyProps> = ({ open, onClose }) => {
 
   const isFormValid = () => {
     return (
-      answers.educationLevel !== '' &&
-      answers.riskPreferenceFinancial !== '' &&
-      answers.hasSimilarExperience !== ''
+      answers.riskPreference !== '' &&
+      answers.decisionMakingStyle !== '' &&
+      answers.lossAversion !== '' &&
+      answers.safetyVsEfficiency !== ''
     );
   };
 
@@ -79,93 +70,112 @@ const PreGameSurvey: React.FC<PreGameSurveyProps> = ({ open, onClose }) => {
 
         <Divider sx={{ my: 2 }} />
 
-        <FormControl component="fieldset" sx={{ mb: 3, width: '100%' }}>
-          <FormLabel component="legend">
-            1. Education Level: (Please select the highest level of education you have completed)
-          </FormLabel>
-          <RadioGroup
-            value={answers.educationLevel}
-            onChange={handleChange('educationLevel')}
-          >
-            <FormControlLabel value="less_than_high_school" control={<Radio />} label="Less than high school" />
-            <FormControlLabel value="high_school" control={<Radio />} label="High school diploma or equivalent" />
-            <FormControlLabel value="some_college" control={<Radio />} label="Some college" />
-            <FormControlLabel value="associates" control={<Radio />} label="Associate's degree" />
-            <FormControlLabel value="bachelors" control={<Radio />} label="Bachelor's degree" />
-            <FormControlLabel value="masters" control={<Radio />} label="Master's degree" />
-            <FormControlLabel value="doctoral" control={<Radio />} label="Doctoral degree or higher" />
-          </RadioGroup>
-        </FormControl>
-
-        <Divider sx={{ my: 2 }} />
-
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="body1" gutterBottom>
-            2. Risk Preference (General): Please indicate how much you agree with the following statement. (1 = Strongly Disagree, 5 = Strongly Agree)
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            "I am generally a risk-taker."
-          </Typography>
+        {/* Question 1: Risk Preference */}
+        <Box sx={{ mb: 4 }}>
           <FormControl component="fieldset" fullWidth>
+            <FormLabel component="legend">
+              1. Risk Preference: "On a scale of 1-7, how willing are you to take risks in safety-critical situations?"
+            </FormLabel>
+            <Typography variant="caption" display="block" gutterBottom>
+              1: Very unwilling, 7: Very willing
+            </Typography>
             <RadioGroup
               row
-              value={answers.riskPreferenceGeneral}
-              onChange={(e) => setAnswers({ ...answers, riskPreferenceGeneral: Number(e.target.value) })}
+              value={answers.riskPreference}
+              onChange={handleChange('riskPreference')}
             >
-              {[1, 2, 3, 4, 5].map((value) => (
-                <FormControlLabel
-                  key={value}
-                  value={value}
-                  control={<Radio />}
-                  label={value.toString()}
-                />
-              ))}
+              <FormControlLabel value="1" control={<Radio />} label="1" />
+              <FormControlLabel value="2" control={<Radio />} label="2" />
+              <FormControlLabel value="3" control={<Radio />} label="3" />
+              <FormControlLabel value="4" control={<Radio />} label="4" />
+              <FormControlLabel value="5" control={<Radio />} label="5" />
+              <FormControlLabel value="6" control={<Radio />} label="6" />
+              <FormControlLabel value="7" control={<Radio />} label="7" />
             </RadioGroup>
           </FormControl>
         </Box>
 
         <Divider sx={{ my: 2 }} />
 
-        <FormControl component="fieldset" sx={{ mb: 3, width: '100%' }}>
+        {/* Question 2: Decision-Making Style */}
+        <FormControl component="fieldset" sx={{ mb: 4, width: '100%' }}>
           <FormLabel component="legend">
-            3. Risk Preference (Financial): Imagine you have a choice between receiving a guaranteed amount of $50 or a 50% chance of receiving $100 and a 50% chance of receiving $0. Which option would you choose?
+            2. Decision-Making Style: "When making decisions under uncertainty, do you typically:"
           </FormLabel>
           <RadioGroup
-            value={answers.riskPreferenceFinancial}
-            onChange={handleChange('riskPreferenceFinancial')}
+            value={answers.decisionMakingStyle}
+            onChange={handleChange('decisionMakingStyle')}
           >
-            <FormControlLabel value="guaranteed" control={<Radio />} label="Guaranteed $50" />
-            <FormControlLabel value="risky" control={<Radio />} label="50% chance of $100 / 50% chance of $0" />
+            <FormControlLabel 
+              value="cautious" 
+              control={<Radio />} 
+              label="Prefer to be cautious and avoid potential negative outcomes" 
+            />
+            <FormControlLabel 
+              value="pursue" 
+              control={<Radio />} 
+              label="Prefer to pursue potential positive outcomes despite some risk" 
+            />
+            <FormControlLabel 
+              value="depends" 
+              control={<Radio />} 
+              label="It depends on the specific situation" 
+            />
           </RadioGroup>
         </FormControl>
 
         <Divider sx={{ my: 2 }} />
 
-        <FormControl component="fieldset" sx={{ mb: 3, width: '100%' }}>
+        {/* Question 3: Loss Aversion */}
+        <FormControl component="fieldset" sx={{ mb: 4, width: '100%' }}>
           <FormLabel component="legend">
-            4. Experience with Similar Games: Have you played any games or simulations in the past that involved making decisions under uncertainty or predicting outcomes?
+            3. Imagine you are playing a game where you can either: a) Guarantee keeping $50 you already have, or b) Take a 50% chance of keeping $100 and 50% chance of getting $0. Which would you choose?
           </FormLabel>
           <RadioGroup
-            value={answers.hasSimilarExperience}
-            onChange={handleChange('hasSimilarExperience')}
+            value={answers.lossAversion}
+            onChange={handleChange('lossAversion')}
           >
-            <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-            <FormControlLabel value="no" control={<Radio />} label="No" />
+            <FormControlLabel 
+              value="keep" 
+              control={<Radio />} 
+              label="Keep $40 for sure" 
+            />
+            <FormControlLabel 
+              value="gamble" 
+              control={<Radio />} 
+              label="Take the 50/50 gamble" 
+            />
           </RadioGroup>
         </FormControl>
 
-        {showExperienceField && (
-          <TextField
-            fullWidth
-            multiline
-            rows={3}
-            variant="outlined"
-            label="If yes, please briefly describe (optional)"
-            value={answers.experienceDescription}
-            onChange={handleChange('experienceDescription')}
-            sx={{ mb: 3 }}
-          />
-        )}
+        <Divider sx={{ my: 2 }} />
+
+        {/* Question 4: Safety vs. Efficiency */}
+        <FormControl component="fieldset" sx={{ mb: 4, width: '100%' }}>
+          <FormLabel component="legend">
+            4. Safety vs. Efficiency: "In transportation operations, which do you generally consider more important?"
+          </FormLabel>
+          <RadioGroup
+            value={answers.safetyVsEfficiency}
+            onChange={handleChange('safetyVsEfficiency')}
+          >
+            <FormControlLabel 
+              value="safety" 
+              control={<Radio />} 
+              label="Ensuring complete safety, even if it means delays" 
+            />
+            <FormControlLabel 
+              value="efficiency" 
+              control={<Radio />} 
+              label="Maintaining efficient service, with reasonable safety measures" 
+            />
+            <FormControlLabel 
+              value="both" 
+              control={<Radio />} 
+              label="Both are equally important" 
+            />
+          </RadioGroup>
+        </FormControl>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleSubmit} color="primary" disabled={!isFormValid()}>
