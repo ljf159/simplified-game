@@ -87,7 +87,6 @@ const ConsentForm: React.FC<ConsentFormProps> = ({ open, onClose }) => {
             </Typography>
             <Typography component="ol" sx={{ pl: 2, fontSize: '1.1rem', lineHeight: 1.6, textAlign: 'left' }}>
               <li>Complete a brief pre-game survey.</li>
-              <li>Play one practice round of the subway management game.</li>
               <li>Play 10 episodes of the game. Each episode consists of 10 rounds. In each round, you will observe water levels at two subway stations, predict the water level at a connecting track node, and decide whether to allow a train to pass.</li>
               <li>Complete a short survey after each of the 10 episodes.</li>
               <li>Complete a final post-game survey.</li>
