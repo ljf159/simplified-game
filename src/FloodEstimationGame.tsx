@@ -1495,6 +1495,7 @@ const FloodEstimationGame: React.FC<FloodEstimationGameProps> = ({ preGameSurvey
       <PostGameSurvey
         open={showPostGameSurvey}
         onClose={handlePostGameSurveySubmit}
+        gameType={settings.gameType as 'punishment' | 'reward'}
       />
     </div>
   );
